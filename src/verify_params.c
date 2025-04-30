@@ -16,11 +16,15 @@ void verify_path_map(char **av)
     char    **path;
     (void)av;
     int i = 0;
-    path = ft_split("sdfdf.asdf", '.');
+    path = ft_split(av[1], '.');
     while (path[i] != NULL)
     {
         printf("%s\n", path[i]);
         i++;
     }
-    
+    if (ft_strncmp(path[i-1], "cub", 3) != 0)
+    {
+        printf("ERROR: EXTENSÃO INVÁLIDA!\n");
+        exit(1);
+    }
 }
