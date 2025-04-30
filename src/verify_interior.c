@@ -1,5 +1,23 @@
 #include "cub3d.h"
 
+void verify_path_textura(char *av)
+{
+    char    **path;
+
+    path = ft_split(av, '.');
+    if (vetor_length(path) > 2)
+	{
+		printf("ERROR: CAMINHO DE TEXTURA INVÁLIDA: %s\n", av);
+		exit(1);
+	}
+    if (ft_strncmp(path[vetor_length(path) - 1], "xpm", 3) != 0)
+    {
+        printf("ERROR: EXTENSÃO INVÁLIDA: %s\n", av);
+        exit(1);
+    }
+    close(on_file(av));
+}
+
 void verfiy_line(char *line)
 {
     char *str;
@@ -15,6 +33,7 @@ void verfiy_line(char *line)
             printf("ERROR: CAMINHO INVÁLIDO!\n");
             exit(1);
         }
+        verify_path_textura(str);
         init_cub()->data.north = (char *)malloc(ft_strlen(str) + 1);
         if (!init_cub()->data.north)
         {

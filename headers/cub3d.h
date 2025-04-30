@@ -34,8 +34,10 @@ typedef struct s_cub
 t_cub  *init_cub(void);
 void    verfiy(int ac, char **av);
 void    verify_path_map(char **av);
+void verify_path_textura(char *av);
 int		vetor_length(char **vet);
 void    verfiy_interior(char **av);
 int     on_file(char *filename);
 char	*get_next_line(int fd);
+void verfiy_line(char *line);
 #endif

@@ -38,8 +38,6 @@ void verify_path_map(char **av)
     char    **path;
 
     path = ft_split(av[1], '.');
-
-    path = ft_split(av[1], '.');
     if (vetor_length(path) > 2)
 	{
 		printf("ERROR: CAMINHO DE MAPA INVÁLIDO!\n");
@@ -51,5 +49,4 @@ void verify_path_map(char **av)
         exit(1);
     }
     close(on_file(av[1]));
-
 }
