@@ -8,5 +8,5 @@
 
 void    verfiy(int ac, char **av);
 void    verify_path_map(char **av);
-
+int		vetor_length(char **vet);
 #endif

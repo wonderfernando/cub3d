@@ -10,17 +10,25 @@ void    verfiy(int ac,char **av)
     verify_path_map(av);
 }
 
+int	vetor_length(char **vet)
+{
+	int	i;
+
+	i = 0;
+	while (vet[i] != NULL)	
+		i++;
+	return (i);
+}
+
 
 void verify_path_map(char **av)
 {
     char    **path;
-    (void)av;
-    int i = 0;
-    path = ft_split("sdfdf.asdf", '.');
-    while (path[i] != NULL)
-    {
-        printf("%s\n", path[i]);
-        i++;
-    }
-    
+
+    path = ft_split(av[1], '.');
+    if (vetor_length(path) > 2)
+	{
+		printf("ERROR: CAMINHO DE MAPA INVÁLIDO!\n");
+		exit(1);
+	}
 }
