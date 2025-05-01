@@ -32,6 +32,7 @@ typedef struct s_cub
 }   t_cub;
 
 t_cub  *init_cub(void);
+t_data  *init_data(void);
 void    verfiy(int ac, char **av);
 void    verify_path_map(char **av);
 int		vetor_length(char **vet);

@@ -15,15 +15,15 @@ void verfiy_line(char *line)
             printf("ERROR: CAMINHO INVÁLIDO!\n");
             exit(1);
         }
-        init_cub()->data.north = (char *)malloc(ft_strlen(str) + 1);
-        if (!init_cub()->data.north)
+        init_data()->north = (char *)malloc(ft_strlen(str) + 1);
+        if (!init_data()->north)
         {
             printf("ERROR: Falha ao alocar memória para o caminho de 'NO'.\n");
             exit(1);
         }
-        ft_strncpy(init_cub()->data.north, str, ft_strlen(str));
-        init_cub()->data.north[ft_strlen(str)] = '\0';
-        printf("Caminho para 'NO': %s\n", init_cub()->data.north);
+        //ft_strncpy(init_cub()->data.north, str, ft_strlen(str));
+       // init_cub()->data.north[ft_strlen(str)] = '\0';
+        printf("Caminho para 'NO': %s\n", init_data()->north);
     }/*
     else if (ft_strncmp(str, "SO", 2) == 0)
     {
