@@ -29,15 +29,26 @@ int on_file(char *filename)
     {
         printf("ERROR: ARQUIVO NÃO ENCONTRADO!\n");
         exit(1);
-    }
+    } 
     return (fd);
 }
+
+
+int file_exists(char *filename)
+{
+    int fd;
+
+    fd = open(filename, O_RDONLY);
+    if (fd == -1)
+        return (0);
+    return (1);
+}
+
+
 
 void verify_path_map(char **av)
 {
     char    **path;
-
-    path = ft_split(av[1], '.');
 
     path = ft_split(av[1], '.');
     if (vetor_length(path) > 2)
@@ -51,5 +62,4 @@ void verify_path_map(char **av)
         exit(1);
     }
     close(on_file(av[1]));
-
 }
