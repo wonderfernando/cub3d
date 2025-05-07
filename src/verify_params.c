@@ -41,10 +41,22 @@ int file_exists(char *filename)
     fd = open(filename, O_RDONLY);
     if (fd == -1)
         return (0);
+    close(fd);
     return (1);
 }
 
+void free_split(char **split)
+{
+    int i;
 
+    i = 0;
+    while (split[i])
+    {
+        free(split[i]);
+        i++;
+    }
+    free(split);
+}
 
 void verify_path_map(char **av)
 {
@@ -54,12 +66,15 @@ void verify_path_map(char **av)
     if (vetor_length(path) > 2)
 	{
 		printf("ERROR: CAMINHO DE MAPA INVÁLIDO!\n");
-		exit(1);
+		free_split(path);
+        exit(1);
 	}
     if (ft_strncmp(path[vetor_length(path) - 1], "cub", 3) != 0)
     {
         printf("ERROR: EXTENSÃO INVÁLIDA!\n");
+        free_split(path);
         exit(1);
     }
+    free_split(path);
     close(on_file(av[1]));
 }

@@ -1,12 +1,5 @@
 #include "cub3d.h"
 
-t_data  *init_data(void)
-{
-   static t_data data;
-
-   return (&data);
-}
-
 t_cub  *init_cub(void)
 {
    static t_cub cub;
@@ -15,6 +8,8 @@ t_cub  *init_cub(void)
 }
 int main(int ac, char **av)
 {
+   init_cub()->data.fd = -1;
    verfiy(ac, av);
    verfiy_interior(av);
+   //free_utils();
 }

@@ -23,6 +23,7 @@ typedef struct s_data
     char    *east;
     int     floor_color[3];
     int     ceiling_color[3];
+    int    fd;
 }   t_data;
 
 typedef struct s_cub
@@ -32,7 +33,7 @@ typedef struct s_cub
 }   t_cub;
 
 t_cub  *init_cub(void);
-t_data  *init_data(void);
+void free_split(char **split);
 void    verfiy(int ac, char **av);
 void    verify_path_map(char **av);
 void verify_path_textura(char *av);
@@ -41,5 +42,7 @@ void    verfiy_interior(char **av);
 int     on_file(char *filename);
 char	*get_next_line(int fd);
 int		file_exists(char *filename);
-void verfiy_line(char *line);
+void verfiy_line(char *line, char *text);
+void free_utils(void);
+void print_error(char *message, char *filename);
 #endif
