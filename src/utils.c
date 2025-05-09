@@ -1,5 +1,18 @@
 #include "cub3d.h"
 
+int	count_char(const char *str, char c)
+{
+	int	count = 0;
+
+	while (*str)
+	{
+		if (*str == c)
+			count++;
+		str++;
+	}
+	return (count);
+}
+
 void free_utils(void)
 {
     free(init_cub()->data.north);

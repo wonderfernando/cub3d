@@ -45,4 +45,7 @@ int		file_exists(char *filename);
 void verfiy_line(char *line, char *text);
 void free_utils(void);
 void print_error(char *message, char *filename);
+char    *deci_orint(char *str, char *text,char *line);
+int	count_char(const char *str, char c);
+void have_space_in_rgb(char **split);
 #endif

@@ -11,5 +11,5 @@ int main(int ac, char **av)
    init_cub()->data.fd = -1;
    verfiy(ac, av);
    verfiy_interior(av);
-   //free_utils();
+   free_utils();
 }

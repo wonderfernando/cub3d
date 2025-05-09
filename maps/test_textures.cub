@@ -1,10 +1,10 @@
-NO ./textures/jesus.xpm
+NO textures/jesus.xpm
 SO textures/maria.xpm
 WE textures/joao.xpm
 EA textures/pedronolasco.xpm
 
-F 20,20,20
-C 200,200,200
+F 20 , 20 ,20
+C 200,200,433
 
 11111
 10001
