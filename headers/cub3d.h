@@ -47,5 +47,6 @@ void free_utils(void);
 void print_error(char *message, char *filename);
 char    *deci_orint(char *str, char *text,char *line);
 int	count_char(const char *str, char c);
-void have_space_in_rgb(char **split);
+int have_space_in_rgb(char **split);
+int check_range_rgb(char **split, char *text);
 #endif

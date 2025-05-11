@@ -1,13 +1,13 @@
    NO                 textures/joao.xpm
 SO   ./textures/greystone.xpm
 
-WE     ./textures/jesus.xpm
+WE     ./text ures/jesus.xpm
 EA   ./textures/maria.xpm
 
 F    255 ,248 ,220
 
 
-C 125,206,2 50
+C 125,206,200
 
 1111111111111111111111111
 111111111000000001200000000200021

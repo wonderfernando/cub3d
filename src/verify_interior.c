@@ -57,7 +57,7 @@ char *verfiy_number(char *str)
 	return (str);
 }
 
-void have_space_in_rgb(char **split)
+int have_space_in_rgb(char **split)
 {
 	int i;
 	int found;
@@ -74,39 +74,42 @@ void have_space_in_rgb(char **split)
 			if (ft_isdigit(split[i][j]))
 			{
 				if (found && split[i][j - 1] == ' ')
-
-					print_error("INVALID RGB, SPACE IN NUMBER", split[i]);
+					return (1);
 				found = 1;
 			}
 			j++;
 		}
 		i++;
 	}
+	return (0);
+}
+
+int check_range_rgb(char **split, char *text)
+{
+	int i;
+
+	i = 0;
+	while (split[i])
+	{
+		if ((ft_atoi(verfiy_number(split[i])) < 0 || ft_atoi(verfiy_number(split[i])) > 255))
+			return 0;
+		fill_rgb(ft_atoi(split[i]), i, text);
+		i++;
+	}
+	return (1);
 }
 
 void verify_rgb(char *str, char *text)
 {
 	char **split;
-	int i;
 
 	split = ft_split(str, ',');
 	if (vetor_length(split) != 3 || count_char(str, ',') != 2)
-	{
-		free_split(split);
 		print_error("VALORES RGB INVÁLIDOS!", str);
-	}
-	have_space_in_rgb(split);
-	i = 0;
-	while (split[i])
-	{
-		if ((ft_atoi(verfiy_number(split[i])) < 0 || ft_atoi(verfiy_number(split[i])) > 255))
-		{
-			free_split(split);
-			print_error("VALORES RGB INVÁLIDOS!", str);
-		}
-		fill_rgb(ft_atoi(split[i]), i, text);
-		i++;
-	}
+	if (have_space_in_rgb(split))
+		print_error("INVALID RGB, SPACE IN NUMBER", str);
+	if (!check_range_rgb(split, text))
+		print_error("INTERVALO DE VALOR RGB ERRADO!", str);
 	free_split(split);
 }
 
@@ -159,7 +162,11 @@ void verfiy_line(char *line, char *text)
 		if (*str == '\0')
 			print_error("CAMINHO INVÁLIDO!", remove_newline(str));
 		if (!file_exists(remove_newline(str)))
-			print_error("CAMINHO NÃO DA TEXTURA NÃO ENCONTRADO!", remove_newline(str));
+		{
+			free(line); // tem que liberar o line antes de dar exit, porem o print_error tenta usar ele, dando um erro
+			print_error("CAMINHO NÃO DA TEXTURA NÃO ENCONTRADO!", ""); // precisamos rever isso | criar uma funcao de exit que vai liberar todas as alocaoes. separar do print error
+		}
+
 		verify_path_textura(remove_newline(str));
 		if (ft_strncmp(text, "NO ", 3) == 0)
 			init_cub()->data.north = deci_orint(str, text, line);
