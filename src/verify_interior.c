@@ -163,7 +163,7 @@ void verfiy_line(char *line, char *text)
 			print_error("CAMINHO INVÁLIDO!", remove_newline(str));
 		if (!file_exists(remove_newline(str)))
 		{
-			free(line); // tem que liberar o line antes de dar exit, porem o print_error tenta usar ele, dando um erro
+			free(line);												   // tem que liberar o line antes de dar exit, porem o print_error tenta usar ele, dando um erro
 			print_error("CAMINHO NÃO DA TEXTURA NÃO ENCONTRADO!", ""); // precisamos rever isso | criar uma funcao de exit que vai liberar todas as alocaoes. separar do print error
 		}
 
@@ -179,35 +179,51 @@ void verfiy_line(char *line, char *text)
 	}
 }
 
-void verfiy_interior(char **av)
+void check_tabs(int fd)
 {
-	int fd;
 	char *line;
 
-	fd = on_file(av[1]);
-	init_cub()->data.fd = fd;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		if (ft_strchr(remove_newline(line), '\t') != NULL)
 		{
 			printf("ERROR: MAPA INVÁLIDO, CARACTER \\t \n");
 			free(line);
-			free_utils();
 			close(fd);
+			free_utils();
 			exit(1);
 		}
+		free(line);
+	}
+	close(fd);
+}
+
+void load_lines(char *line)
+{
+	verfiy_line(line, "NO ");
+	verfiy_line(line, "SO ");
+	verfiy_line(line, "WE ");
+	verfiy_line(line, "EA ");
+	verfiy_line_c_f(line, "F ");
+	verfiy_line_c_f(line, "C ");
+}
+
+void verfiy_interior(char **av)
+{
+	int fd;
+	char *line;
+
+	fd = on_file(av[1]); 
+	init_cub()->data.fd = fd;
+	check_tabs(on_file(av[1])); //  precisa fechar fd primeiro cassule
+	while ((line = get_next_line(fd)) != NULL)
+	{
 		if (line[0] == '\n')
 		{
 			free(line);
 			continue;
 		}
-		verfiy_line(line, "NO ");
-		verfiy_line(line, "SO ");
-		verfiy_line(line, "WE ");
-		verfiy_line(line, "EA ");
-		verfiy_line_c_f(line, "F ");
-		verfiy_line_c_f(line, "C ");
-
+		load_lines(line);
 		free(line);
 	}
 	close(fd);
