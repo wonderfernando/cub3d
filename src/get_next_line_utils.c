@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgouveia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ferda-si <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 13:04:37 by cgouveia          #+#    #+#             */
-/*   Updated: 2024/05/23 13:04:46 by cgouveia         ###   ########.fr       */
+/*   Created: 2024/06/07 13:24:45 by ferda-si          #+#    #+#             */
+/*   Updated: 2024/09/15 18:27:11 by ferda-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
@@ -45,30 +44,26 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (temp);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *src)
 {
-	char	*temp;
-	int		len;
+	char	*new;
 	int		i;
+	int		size;
 
-	len = 0;
+	size = 0;
+	while (src[size])
+		size++;
+	new = malloc(sizeof(char) * (size + 1));
+	if (!new)
+		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (src[i])
 	{
-		len++;
+		new[i] = src[i];
 		i++;
 	}
-	temp = (char *)malloc(sizeof(char) * len + 1);
-	if (!temp)
-		return (0);
-	i = 0;
-	while (i < len)
-	{
-		temp[i] = s1[i];
-		i++;
-	}
-	temp[i] = 0;
-	return (temp);
+	new[i] = '\0';
+	return (new);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

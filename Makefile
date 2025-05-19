@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FILES = src/main.c src/verify_params.c src/verify_interior.c src/get_next_line.c src/get_next_line_utils.c src/utils.c
+FILES = src/main.c src/verify_params.c src/verify_interior.c src/get_next_line.c src/get_next_line_utils.c src/utils.c src/valide_map.c
 
 OBJS = $(FILES:src/%.c=objs/%.o)
 
